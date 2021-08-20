@@ -13,7 +13,6 @@ import defaultProfile from '../../images/default-profile.png'
 import PropTypes from 'prop-types'
 
 export default function MovieReviewsView({ movieId }) {
-  console.log('movieId', movieId)
   const [reviews, setReviews] = useState(null)
 
   useEffect(() => {
