@@ -1,3 +1,5 @@
+@import "modern-normalize/modern-normalize.css";
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -10,4 +12,96 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.active {
+  color: rgb(255, 255, 255);
+  background-color: tomato;
+  box-shadow: rgb(0 0 0 / 20%) 0px 1px 3px 0px, rgb(0 0 0 / 14%) 0px 1px 1px 0px,
+    rgb(0 0 0 / 12%) 0px 2px 1px -1px;
+  transform: scale(1.1);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+.pagination a,
+.pagination li {
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+}
+
+.break-me {
+  padding: 5px 10px;
+}
+.page {
+  padding: 10px 15px;
+  width: 100%;
+  height: 100%;
+  transition: color 150ms ease 0s, background-color 150ms ease 0s,
+    transform 150ms ease 0s;
+  border-radius: 5px;
+}
+
+.page:hover {
+  color: rgb(255, 255, 255);
+  background-color: tomato;
+  box-shadow: rgb(0 0 0 / 20%) 0px 1px 3px 0px, rgb(0 0 0 / 14%) 0px 1px 1px 0px,
+    rgb(0 0 0 / 12%) 0px 2px 1px -1px;
+  transform: scale(1.1);
+  border-radius: 5px;
+}
+
+.previous a {
+  margin-right: 10px;
+  padding: 10px 15px;
+
+  border-radius: 5px;
+
+  background-color: rgb(247, 247, 247);
+
+  transition: color 150ms ease 0s, background-color 150ms ease 0s,
+    transform 150ms ease 0s;
+}
+.next a {
+  margin-left: 10px;
+  padding: 10px 15px;
+
+  border-radius: 5px;
+  background-color: rgb(247, 247, 247);
+
+  transition: color 150ms ease 0s, background-color 150ms ease 0s,
+    transform 150ms ease 0s;
+}
+
+.next a:hover,
+.previous a:hover {
+  color: rgb(255, 255, 255);
+  background-color: tomato;
+  box-shadow: rgb(0 0 0 / 20%) 0px 1px 3px 0px, rgb(0 0 0 / 14%) 0px 1px 1px 0px,
+    rgb(0 0 0 / 12%) 0px 2px 1px -1px;
+  transform: scale(1.1);
+  border-radius: 5px;
 }
