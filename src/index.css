@@ -105,3 +105,9 @@ p {
   transform: scale(1.1);
   border-radius: 5px;
 }
+
+.loader {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
