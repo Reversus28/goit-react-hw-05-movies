@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import { Title } from '../HomeView/HomeView.styled'
+import { Title } from './HomePage.styled'
 import { fetchTrendingMovie, getGenreList } from '../../services/apiService'
 import ReactPaginate from 'react-paginate'
 import MoviesList from '../../components/MoviesList'

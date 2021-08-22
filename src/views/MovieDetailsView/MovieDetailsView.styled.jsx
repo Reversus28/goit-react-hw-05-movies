@@ -18,6 +18,30 @@ const SectionTitle = styled.h1`
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+
+  & + .link {
+    display: inline-block;
+    min-width: 100px;
+    padding: 10px;
+    margin-bottom: 20px;
+
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+
+    border-radius: 7px;
+    border: none;
+    color: white;
+    text-decoration: none;
+    background-color: tomato;
+  }
+  & + .link:hover {
+    background-color: #2c2c2c;
+  }
+  & + .link:not(:last-of-type) {
+    margin-right: 20px;
+  }
 `
 const Img = styled.img`
   height: 500px;

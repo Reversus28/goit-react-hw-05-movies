@@ -10,11 +10,10 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import PageNotFoundView from "./views/PageNotFoundView";
 
-const HomeView = lazy(() => import("./views/HomeView"));
+const HomePage = lazy(() => import("./views/HomePage"));
 const MovieDetailsView = lazy(() => import("./views/MovieDetailsView"));
-const MovieSearchView = lazy(() => import("./views/MovieSearchView"));
+const MoviesPage = lazy(() => import("./views/MoviesPage"));
 
 function App() {
   return (
@@ -40,7 +39,7 @@ function App() {
           <Route path="/" exact>
             <Section>
               <Container>
-                <HomeView />
+                <HomePage />
               </Container>
             </Section>
           </Route>
@@ -48,7 +47,7 @@ function App() {
           <Route path="/movies" exact>
             <Section>
               <Container>
-                <MovieSearchView />
+                <MoviesPage />
               </Container>
             </Section>
           </Route>
@@ -63,7 +62,7 @@ function App() {
 
           <Route>
             <Container>
-              <PageNotFoundView />
+              <HomePage />
             </Container>
           </Route>
         </Switch>

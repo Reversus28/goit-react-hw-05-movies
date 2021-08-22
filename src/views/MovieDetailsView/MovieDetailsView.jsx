@@ -1,5 +1,12 @@
 import { useState, useEffect } from 'react'
-import { Route, useRouteMatch, NavLink, useParams } from 'react-router-dom'
+import {
+  Route,
+  useRouteMatch,
+  NavLink,
+  useHistory,
+  useParams,
+  useLocation,
+} from 'react-router-dom'
 import {
   Wrapper,
   Details,
@@ -21,7 +28,13 @@ import MovieReviewsView from '../MovieReviewsView'
 
 export default function MovieDetailsView() {
   const params = useParams()
+
   const match = useRouteMatch()
+  console.log('match', match)
+  const history = useHistory()
+  console.log('history', history)
+  const location = useLocation()
+  console.log('location', location)
 
   const { url } = match
   const { movieId } = params
@@ -41,11 +54,22 @@ export default function MovieDetailsView() {
     }, 200)
   }
 
+  const goBack = () => {
+    history.push(location?.state?.from ?? '/')
+  }
+
   return (
     <>
       {movie && (
         <>
           <SectionTitle>Found movie</SectionTitle>
+          <button
+            className={'link'}
+            activeClassName="selected"
+            onClick={goBack}
+          >
+            Go back
+          </button>
           <Wrapper>
             <Img
               src={

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
 
-import { Title, Input, Form, Button } from './MovieSearchView.styled'
+import { Title, Input, Form, Button } from './MoviesPage.styled'
 import { SearchMovie, getGenreList } from '../../services/apiService'
 import ReactPaginate from 'react-paginate'
 import MoviesList from '../../components/MoviesList'
@@ -8,35 +9,43 @@ import MovieItem from '../../components/MovieItem'
 import { toast } from 'react-toastify'
 
 export default function MovieSearchView() {
-  const [query, setQuery] = useState('')
-  const [constantQuery, setConstantQuery] = useState('')
   const [movies, setMovies] = useState([])
   const [genreList, setGenreList] = useState([])
   const [moviesAPI, setMoviesAPI] = useState([])
-  const [currentPage, setCurrentPage] = useState(1)
+
+  const history = useHistory()
+  const location = useLocation()
+
+  const searchQuery = new URLSearchParams(location.search).get('query')
+  const currentPages = Number(new URLSearchParams(location.search).get('page'))
 
   useEffect(() => {
     getGenreList().then((genreList) => setGenreList(genreList.genres))
   }, [])
 
   useEffect(() => {
-    if (constantQuery === '' ?? constantQuery !== query) {
+    if (!searchQuery) {
       return
     }
-    SearchMovie(constantQuery.trim(), currentPage).then((movies) => {
+    SearchMovie(searchQuery.trim(), currentPages).then((movies) => {
       setMovies(movies.results)
       setMoviesAPI(movies)
     })
-  }, [constantQuery, currentPage, query])
+  }, [currentPages, searchQuery])
 
   const handlePageClick = (e) => {
-    setCurrentPage(e.selected + 1)
+    history.push({
+      ...location,
+      search: `query=${searchQuery}&page=${e.selected + 1}`,
+    })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (query === '') {
+    const query = e.target.elements.movieInput
+
+    if (query.value === '') {
       toast.warn('🦄 Enter yor query!', {
         position: 'top-right',
         autoClose: 2000,
@@ -49,11 +58,12 @@ export default function MovieSearchView() {
       return
     }
 
-    SearchMovie(query, currentPage).then((movies) => {
-      setMovies(movies.results)
-      setMoviesAPI(movies)
-      setConstantQuery(query.trim())
+    history.push({
+      ...location,
+      search: `query=${query.value}&page=${1}`,
     })
+
+    query.value = ''
   }
 
   return (
@@ -61,11 +71,7 @@ export default function MovieSearchView() {
       <Title>Search movies</Title>
 
       <Form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          onChange={(e) => setQuery(e.currentTarget.value.toLowerCase().trim())}
-          value={query}
-        />
+        <Input id="movieInput" type="text" />
         <Button type="submit">Search</Button>
       </Form>
 

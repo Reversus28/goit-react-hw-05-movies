@@ -8,15 +8,19 @@ import {
   Rating,
 } from './MovieItem.styled'
 import defaultImage from '../../images/no-poster.jpg'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 export default function MovieItem({ id, image, title, date, rating, genre }) {
+  const location = useLocation()
   return (
     <Item>
       <Link
         to={{
           pathname: `/movies/${id}`,
+          state: {
+            from: location,
+          },
         }}
       >
         <Img
